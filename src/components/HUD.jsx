@@ -42,12 +42,12 @@ export default function HUD() {
         <div className="absolute inset-0 pointer-events-none">
             {/* Exercise label */}
             <div className="absolute top-6 left-1/2 -translate-x-1/2">
-                <div className="glass-card px-5 py-2 rounded-full flex items-center gap-3">
+                <div className="glass-card px-8 py-4 rounded-full flex items-center gap-4">
                     <div className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-                    <span className="text-xs font-medium text-gray-300 tracking-[0.15em] uppercase">
+                    <span className="font-serif" style={{ fontSize: 'clamp(48px, 5vw, 72px)', lineHeight: 1.1, color: 'white' }}>
                         {exercise.name}
                     </span>
-                    <span className="text-[10px] text-gray-500 tracking-widest uppercase">
+                    <span className="text-[10px] text-gray-500 tracking-widest uppercase self-end mb-1">
                         {phase === 'idle' ? '—' : phase}
                     </span>
                 </div>

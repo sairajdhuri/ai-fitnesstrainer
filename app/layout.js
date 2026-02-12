@@ -18,7 +18,7 @@ export const metadata = {
     description:
         'AI-powered real-time exercise form correction using computer vision. Get instant feedback on your squats, push-ups, bicep curls, and jumping jacks.',
     icons: {
-        icon: '/vite.svg',
+        icon: '/logo.png',
     },
 };
 

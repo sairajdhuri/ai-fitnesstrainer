@@ -5,6 +5,7 @@
  * Dark Japandi hero with Playfair Display serif, glass nav, social proof,
  * trainer image, floating stat card, and exercise picker overlay.
  */
+import Link from 'next/link';
 import { useState } from 'react';
 import { ArrowDownUp, ArrowDown, Dumbbell, Zap, X } from 'lucide-react';
 import { EXERCISE_LIST } from '../engine/exercises';
@@ -18,7 +19,7 @@ const AVATARS = [
     'https://lh3.googleusercontent.com/aida-public/AB6AXuCNO2JaykiMclWlhbdox3zitYb3KlgR0dGH6xWLC2Wty1B4uUEzQ-ziT0usmRrfQXEdNaaYM1CZUInPhFMXQ_2syvl1KNhY156PL9vtse3zDxntRXBUnAyaAo9l-bsmEbG_GV2nJqAEDt4gvNoObjqKS4l9smObCLh0qUUx-pn9j148UxNI_g-XTfcfffM0iPY81RhglHGPKrB9uRpW2eHLhUE-CXRWiRtnbhSPRXLyxoSwAz_OOxApAakmfxlnBwsyr6msOsxYHQ',
 ];
 
-const TRAINER_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDTMyceAdeRrK_UgzHO3G4NTsBUh2Nx4wgIJKmoGDRlVWwWmpTRBRT-A-pKv48FEv8oZ6UY3nu1vK0bDfatgSF58aPAQ1PWmzXBOegr2FLSizMqlN1P1EmyDIp8me_s9vCFKC5hteymmoWnKK9504lF9jBPLAF8e5Ff7ZpPG5ROqake1_TBvVweR2CVYqYoqXZAHnnEFgD7fhMIcy-QbaF1hj2hrBnq7lW2uqIr1lWQDraM0ZwGa4u7mJTG6kQZ-0hDDr9B9F2ojw';
+const TRAINER_IMG = '/design inspo/modelman.png';
 
 /* ── Exercise Picker Overlay ── */
 function ExercisePicker({ onSelect, onClose }) {
@@ -54,10 +55,10 @@ function ExercisePicker({ onSelect, onClose }) {
                                 key={ex.id}
                                 disabled={!isEngineReady}
                                 onClick={() => onSelect(ex)}
-                                className="group p-6 flex flex-col items-start gap-3 cursor-pointer
+                                className="group p-6 flex flex-col items-center gap-3 cursor-pointer
                            disabled:opacity-25 disabled:cursor-not-allowed
                            rounded-2xl transition-all duration-300
-                           hover:border-primary/30 active:scale-[0.98] text-left animate-fade-up glass-card"
+                           hover:border-primary/30 active:scale-[0.98] text-center animate-fade-up glass-card"
                                 style={{ animationDelay: `${i * 0.06}s`, borderBottom: `2px solid ${ex.color}` }}
                             >
                                 <div className="w-11 h-11 rounded-xl flex items-center justify-center"
@@ -91,19 +92,21 @@ export default function LandingPage({ onStartWorkout }) {
         <div className="w-full h-full overflow-y-auto" style={{ background: '#1d1815', color: 'white' }}>
 
             {/* ── Nav ── */}
-            <nav style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50, padding: '28px 80px' }}>
+            <nav style={{
+                position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, padding: '20px 80px',
+                background: 'rgba(29, 24, 21, 0.5)', backdropFilter: 'blur(16px)',
+                borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+            }}>
                 <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     {/* Logo */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <div className="bg-primary" style={{ width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
-                            <span className="material-icons-round" style={{ fontSize: 18 }}>spa</span>
-                        </div>
+                        <img src="/logo.png" alt="FitVision logo" style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} />
                         <span className="font-serif" style={{ fontSize: 20, fontWeight: 600, letterSpacing: '0.04em', color: 'white' }}>FitVision</span>
                     </div>
 
                     {/* Nav links in glass pill */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: 32, padding: '12px 32px', borderRadius: 9999, border: '1px solid rgba(255,255,255,0.05)', background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)' }}>
-                        <a href="#" style={{ fontSize: 14, fontWeight: 500, color: '#d1d5db', textDecoration: 'none' }}>Workouts</a>
+                        <Link href="/workouts" style={{ fontSize: 14, fontWeight: 500, color: '#d1d5db', textDecoration: 'none' }}>Workouts</Link>
                         <a href="#" style={{ fontSize: 14, fontWeight: 500, color: '#d1d5db', textDecoration: 'none' }}>Recommendations</a>
                         <a href="#" style={{ fontSize: 14, fontWeight: 500, color: '#d1d5db', textDecoration: 'none' }}>Pricing</a>
                     </div>
@@ -113,7 +116,7 @@ export default function LandingPage({ onStartWorkout }) {
                         <a href="#" style={{ fontSize: 14, fontWeight: 500, color: 'white', textDecoration: 'none' }}>Log in</a>
                         <button
                             onClick={() => setShowPicker(true)}
-                            style={{ padding: '10px 24px', borderRadius: 9999, background: 'white', color: '#1d1815', fontSize: 14, fontWeight: 600, border: 'none', cursor: 'pointer' }}
+                            style={{ padding: '10px 24px', borderRadius: 9999, background: 'var(--color-sage)', color: 'white', fontSize: 14, fontWeight: 600, border: 'none', cursor: 'pointer' }}
                         >
                             Get Started
                         </button>
@@ -122,7 +125,16 @@ export default function LandingPage({ onStartWorkout }) {
             </nav>
 
             {/* ── Hero ── */}
-            <header className="hero-bg" style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+            <header className="hero-bg" style={{
+                position: 'relative',
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                overflow: 'hidden',
+                backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url("/design inspo/japandi.png")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}>
                 {/* Grain */}
                 <div className="grain" style={{ position: 'absolute', inset: 0, opacity: 0.03, pointerEvents: 'none' }} />
 
@@ -130,16 +142,15 @@ export default function LandingPage({ onStartWorkout }) {
                     width: '100%', maxWidth: 1400, margin: '0 auto',
                     padding: '160px 80px 80px 80px',
                     position: 'relative', zIndex: 10,
-                    display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80,
+                    display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 80,
                     alignItems: 'center', minHeight: '100vh',
                 }}>
-
                     {/* Left content */}
                     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', zIndex: 20 }}>
                         {/* Badge */}
-                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '6px 16px', borderRadius: 9999, border: '1px solid rgba(189,137,101,0.3)', background: 'rgba(189,137,101,0.1)', width: 'fit-content', marginBottom: 40 }}>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '6px 16px', borderRadius: 9999, border: '1px solid rgba(170,160,130,0.3)', background: 'rgba(170,160,130,0.1)', width: 'fit-content', marginBottom: 40 }}>
                             <span className="bg-primary" style={{ width: 8, height: 8, borderRadius: '50%', display: 'block' }} />
-                            <span className="text-primary" style={{ fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase' }}>For Conscious Trainers</span>
+                            <span style={{ fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-beige)' }}>FOR THE CONSCIOUS MOVER</span>
                         </div>
 
                         {/* Heading */}
@@ -162,7 +173,7 @@ export default function LandingPage({ onStartWorkout }) {
                                 className="btn-glow"
                                 style={{
                                     padding: '16px 48px', borderRadius: 9999,
-                                    background: '#bd8965', color: 'white',
+                                    background: 'var(--color-primary)', color: 'white',
                                     fontSize: 15, fontWeight: 500,
                                     border: 'none', cursor: 'pointer',
                                     display: 'flex', alignItems: 'center', gap: 10,
@@ -195,36 +206,18 @@ export default function LandingPage({ onStartWorkout }) {
                             </div>
                         </div>
                     </div>
-
                     {/* Right — trainer image */}
                     <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-                        <div style={{ position: 'relative', width: '100%', maxWidth: 480, zIndex: 10 }}>
+                        <div style={{ position: 'relative', width: '100%', maxWidth: 650, zIndex: 10 }}>
                             {/* Glow */}
-                            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '120%', height: '120%', borderRadius: '50%', filter: 'blur(48px)', zIndex: -1, border: '1px solid rgba(189,137,101,0.2)', background: 'rgba(189,137,101,0.05)' }} />
+                            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '120%', height: '120%', borderRadius: '50%', filter: 'blur(48px)', zIndex: -1, border: '1px solid rgba(170,160,130,0.2)', background: 'rgba(170,160,130,0.05)' }} />
                             {/* Image */}
                             <img
                                 src={TRAINER_IMG}
                                 alt="Fitness trainer"
                                 style={{ position: 'relative', zIndex: 10, objectFit: 'contain', width: '100%', filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))', maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}
                             />
-                            {/* Floating stat card */}
-                            <div style={{ position: 'absolute', top: '25%', left: -48, zIndex: 20 }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                                    <div className="glass-card" style={{ padding: '12px 20px', borderRadius: 16, display: 'flex', alignItems: 'center', gap: 12, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
-                                        <div className="text-primary" style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(189,137,101,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                            <span className="material-icons-round">favorite</span>
-                                        </div>
-                                        <div>
-                                            <p style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Retention</p>
-                                            <p style={{ fontSize: 18, fontWeight: 700, color: 'white' }}>98%</p>
-                                        </div>
-                                    </div>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        <div style={{ width: 48, height: 1, background: 'rgba(255,255,255,0.3)' }} />
-                                        <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'white' }} />
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

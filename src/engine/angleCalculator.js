@@ -17,7 +17,13 @@ export function getJointAngles(landmarks, exerciseConfig) {
     for (const [jointName, joint] of Object.entries(exerciseConfig.joints)) {
         const a = landmarks[joint.a];
         const b = landmarks[joint.b];
-        const c = landmarks[joint.c];
+        let c = landmarks[joint.c];
+
+        // Virtual 'vertical' point for back angle (checking lean)
+        if (joint.c === 'vertical' && b) {
+            c = { x: b.x, y: b.y + 0.5, z: b.z }; // Point directly below 'b' (hip)
+        }
+
         if (a && b && c) angles[jointName] = calculateAngle(a, b, c);
     }
     return angles;

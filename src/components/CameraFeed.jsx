@@ -7,11 +7,16 @@ import { useRef, useEffect, useState, useCallback } from 'react';
 
 export default function CameraFeed({ onVideoReady, canvasRef, children }) {
     const videoRef = useRef(null);
+    const streamRef = useRef(null);
     const [cameraError, setCameraError] = useState(null);
     const [isCameraReady, setIsCameraReady] = useState(false);
 
     const startCamera = useCallback(async () => {
         try {
+            if (streamRef.current) {
+                streamRef.current.getTracks().forEach(track => track.stop());
+            }
+
             const stream = await navigator.mediaDevices.getUserMedia({
                 video: {
                     width: { ideal: 1280 },
@@ -21,6 +26,9 @@ export default function CameraFeed({ onVideoReady, canvasRef, children }) {
                 },
                 audio: false,
             });
+
+            streamRef.current = stream;
+
             if (videoRef.current) {
                 videoRef.current.srcObject = stream;
                 videoRef.current.onloadeddata = () => {
@@ -43,8 +51,9 @@ export default function CameraFeed({ onVideoReady, canvasRef, children }) {
     useEffect(() => {
         startCamera();
         return () => {
-            if (videoRef.current?.srcObject) {
-                videoRef.current.srcObject.getTracks().forEach(t => t.stop());
+            if (streamRef.current) {
+                streamRef.current.getTracks().forEach(track => track.stop());
+                streamRef.current = null;
             }
         };
     }, [startCamera]);
@@ -82,7 +91,6 @@ export default function CameraFeed({ onVideoReady, canvasRef, children }) {
             <canvas
                 ref={canvasRef}
                 className="skeleton-canvas"
-                style={{ transform: 'scaleX(-1)' }}
             />
             {isCameraReady && children}
         </div>

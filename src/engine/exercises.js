@@ -20,15 +20,18 @@ export const EXERCISES = {
             rightKnee: { a: 24, b: 26, c: 28 },
             leftHip: { a: 11, b: 23, c: 25 },
             rightHip: { a: 12, b: 24, c: 26 },
+            torsoAngle: { a: 11, b: 23, c: 'vertical' }, // Shoulder-Hip-Vertical
         },
         primaryJoint: 'leftKnee',
         phases: {
             up: { min: 160, max: 180 },
-            down: { min: 60, max: 110 },
+            down: { min: 50, max: 150 }, // 150 captures shallow squats
         },
         rules: [
-            { id: 'squat_depth', joints: ['leftKnee', 'rightKnee'], check: 'max', threshold: 120, message: 'Go lower!', phase: 'down', severity: 'warning' },
-            { id: 'squat_back', joints: ['leftHip', 'rightHip'], check: 'min', threshold: 70, message: 'Keep your back straight!', phase: 'all', severity: 'warning' },
+            // "Go deeper" if in down phase but angle is still high (e.g. 130)
+            { id: 'squat_depth', joints: ['leftKnee', 'rightKnee'], check: 'max', threshold: 110, message: 'Go deeper!', phase: 'down', severity: 'warning' },
+            // Torso lean: 180 is straight up. < 140 is too much lean (40 deg).
+            { id: 'squat_back', joints: ['torsoAngle'], check: 'min', threshold: 140, message: 'Chest up! Back straight', phase: 'all', severity: 'warning' },
         ],
     },
     pushup: {
@@ -45,8 +48,8 @@ export const EXERCISES = {
         },
         primaryJoint: 'leftElbow',
         phases: {
-            up: { min: 160, max: 180 },
-            down: { min: 60, max: 100 },
+            up: { min: 140, max: 180 },
+            down: { min: 40, max: 120 },
         },
         rules: [
             { id: 'pushup_depth', joints: ['leftElbow', 'rightElbow'], check: 'max', threshold: 110, message: 'Go lower!', phase: 'down', severity: 'warning' },
@@ -62,15 +65,19 @@ export const EXERCISES = {
         joints: {
             leftElbow: { a: 11, b: 13, c: 15 },
             rightElbow: { a: 12, b: 14, c: 16 },
+            leftUpperArm: { a: 23, b: 11, c: 13 }, // Hip-Shoulder-Elbow angle
+            rightUpperArm: { a: 24, b: 12, c: 14 },
         },
         primaryJoint: 'leftElbow',
         phases: {
             up: { min: 30, max: 70 },
-            down: { min: 150, max: 180 },
+            down: { min: 170, max: 180 }, // Stricter extension as requested
         },
         rules: [
             { id: 'curl_full_curl', joints: ['leftElbow', 'rightElbow'], check: 'max', threshold: 80, message: 'Curl higher!', phase: 'up', severity: 'warning' },
-            { id: 'curl_full_extend', joints: ['leftElbow', 'rightElbow'], check: 'min', threshold: 140, message: 'Extend fully!', phase: 'down', severity: 'info' },
+            { id: 'curl_full_extend', joints: ['leftElbow', 'rightElbow'], check: 'min', threshold: 160, message: 'Extend fully!', phase: 'down', severity: 'info' },
+            // New rule: Elbow stability (don't swing forward/back)
+            { id: 'curl_elbow_stability', joints: ['leftUpperArm', 'rightUpperArm'], check: 'max', threshold: 25, message: 'Keep elbows close to body!', phase: 'all', severity: 'warning' },
         ],
     },
     jumpingJack: {

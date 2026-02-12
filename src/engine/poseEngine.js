@@ -20,6 +20,7 @@ export async function initPoseEngine() {
         numPoses: 1,
         minPoseDetectionConfidence: 0.5,
         minTrackingConfidence: 0.5,
+        modelComplexity: 0,
     });
     return poseLandmarker;
 }

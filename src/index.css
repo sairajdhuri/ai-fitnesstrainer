@@ -2,18 +2,23 @@
 
 @theme {
     /* ─── Japandi / User Design Colors ─── */
-    --color-primary: #bd8965;
-    --color-primary-dark: #a37253;
+    --color-soft-clay: #AC6A47;
+    --color-terracotta: #B98869;
+    --color-olive: #6D674B;
+    --color-sand: #AAA082;
+    --color-taupe: #C0AF9E;
+    --color-shady: #767267;
+    --color-off-white: #C4BBAA;
+    --color-warm-white: #C3BDB1;
+    --color-sage: #4A5D44;
+    --color-beige: #E6DCC8;
+    /* Japandi Beige */
+    /* Dark sage leafy green */
+
+    --color-primary: var(--color-terracotta);
+    --color-primary-dark: var(--color-soft-clay);
     --color-bg-dark: #1d1815;
     --color-bg-light: #f7f7f6;
-    --color-olive: #6D674B;
-    --color-taupe: #C0AF9E;
-    --color-soft-clay: #AC6A47;
-    --color-off-white: #C4BBAA;
-    --color-terracotta: #B98869;
-    --color-sand: #AAA082;
-    --color-shady: #767267;
-    --color-warm-white: #C3BDB1;
 
     /* ─── Semantic ─── */
     --color-success: #7d9b76;
@@ -35,7 +40,6 @@ html,
 body {
     width: 100%;
     height: 100%;
-    overflow: hidden;
     font-family: var(--font-display);
     background: var(--color-bg-dark);
     color: white;
@@ -58,7 +62,7 @@ body {
 
 /* ─── Hero BG ─── */
 .hero-bg {
-    background: radial-gradient(circle at 65% 50%, #4a4532 0%, #1d1815 65%);
+    background: radial-gradient(circle at 65% 50%, #6D674B33 0%, #1d1815 65%);
 }
 
 /* ─── Glass Cards ─── */
@@ -80,16 +84,16 @@ body {
 /* ─── Button Glow ─── */
 .btn-glow {
     box-shadow:
-        0 0 20px rgba(189, 137, 101, 0.4),
-        0 0 40px rgba(189, 137, 101, 0.2),
+        0 0 20px rgba(185, 136, 105, 0.4),
+        0 0 40px rgba(185, 136, 105, 0.2),
         0 8px 24px -6px rgba(172, 106, 71, 0.5);
     animation: glow-pulse 2.5s ease-in-out infinite;
 }
 
 .btn-glow:hover {
     box-shadow:
-        0 0 30px rgba(189, 137, 101, 0.55),
-        0 0 60px rgba(189, 137, 101, 0.3),
+        0 0 30px rgba(185, 136, 105, 0.55),
+        0 0 60px rgba(185, 136, 105, 0.3),
         0 12px 32px -6px rgba(172, 106, 71, 0.6);
 }
 
@@ -98,15 +102,15 @@ body {
     0%,
     100% {
         box-shadow:
-            0 0 20px rgba(189, 137, 101, 0.4),
-            0 0 40px rgba(189, 137, 101, 0.2),
+            0 0 20px rgba(185, 136, 105, 0.4),
+            0 0 40px rgba(185, 136, 105, 0.2),
             0 8px 24px -6px rgba(172, 106, 71, 0.5);
     }
 
     50% {
         box-shadow:
-            0 0 28px rgba(189, 137, 101, 0.55),
-            0 0 56px rgba(189, 137, 101, 0.28),
+            0 0 28px rgba(185, 136, 105, 0.55),
+            0 0 56px rgba(185, 136, 105, 0.28),
             0 10px 28px -6px rgba(172, 106, 71, 0.55);
     }
 }

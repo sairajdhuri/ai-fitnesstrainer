@@ -15,26 +15,29 @@ function Toast({ feedback, onExpire }) {
     }, [feedback.id, onExpire]);
 
     const accents = {
-        warning: { border: '#c9a857', bg: 'rgba(201,168,87,0.08)', text: '#c9a857' },
-        info: { border: '#bd8965', bg: 'rgba(189,137,101,0.08)', text: '#C0AF9E' },
-        success: { border: '#7d9b76', bg: 'rgba(125,155,118,0.08)', text: '#7d9b76' },
+        warning: { border: '#ff4444', bg: 'rgba(0,0,0,0.95)', text: '#ff4444' }, // Red for corrections
+        info: { border: '#ffffff', bg: 'rgba(0,0,0,0.95)', text: '#ffffff' },
+        success: { border: '#44ff44', bg: 'rgba(0,0,0,0.95)', text: '#44ff44' }, // Green for correct
     };
     const a = accents[feedback.severity] || accents.info;
 
     return (
         <div
-            className={`px-5 py-3.5 mb-2.5 ${exiting ? 'animate-slide-out' : 'animate-slide-in'}`}
+            className={`px-6 py-5 mb-4 ${exiting ? 'animate-slide-out' : 'animate-slide-in'}`}
             style={{
-                borderRadius: '16px',
-                borderLeft: `3px solid ${a.border}`,
+                borderRadius: '20px',
+                borderLeft: `6px solid ${a.border}`,
                 background: a.bg,
-                backdropFilter: 'blur(12px)',
-                border: `1px solid rgba(255,255,255,0.05)`,
-                borderLeftWidth: '3px',
+                backdropFilter: 'blur(16px)',
+                border: `1px solid rgba(255,255,255,0.1)`,
+                borderLeftWidth: '6px',
                 borderLeftColor: a.border,
+                boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
             }}
         >
-            <p className="text-sm font-medium" style={{ color: a.text }}>{feedback.message}</p>
+            <p className="text-3xl font-bold tracking-wide" style={{ color: a.text, textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                {feedback.message}
+            </p>
         </div>
     );
 }
@@ -54,7 +57,7 @@ export default function FeedbackPopup() {
     }, [feedbackQueue]);
 
     return (
-        <div className="absolute top-16 right-6 w-64 pointer-events-none z-20">
+        <div className="absolute top-20 right-8 w-96 pointer-events-none z-50">
             {displayed.map(f => (
                 <Toast key={`${f.id}-${f.timestamp}`} feedback={f}
                     onExpire={() => setDisplayed(p => p.filter(x => x.id !== f.id))} />
