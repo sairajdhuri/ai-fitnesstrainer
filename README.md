@@ -1,16 +1,42 @@
-# React + Vite
+# AI Fitness Trainer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An AI-powered fitness trainer web application built with **Next.js** and **React**. It uses real-time pose detection via MediaPipe to track and guide your workouts directly in the browser.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Framework:** [Next.js](https://nextjs.org/) 15
+- **UI:** [React](https://react.dev/) 19
+- **Pose Detection:** [MediaPipe Tasks Vision](https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker)
+- **State Management:** [Zustand](https://zustand.docs.pmnd.rs/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) 4
+- **Icons:** [Lucide React](https://lucide.dev/)
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+First, install the dependencies:
 
-## Expanding the ESLint configuration
+```bash
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Then, run the development server:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the app.
+
+## Available Scripts
+
+| Command | Description |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start the production server |
+| `npm run lint` | Run ESLint |
+
+## Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs) — learn about Next.js features and API.
+- [MediaPipe Pose Landmarker](https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker) — learn about the pose detection model.
