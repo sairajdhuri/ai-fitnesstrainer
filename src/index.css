@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+@theme {
+    /* ─── Japandi / User Design Colors ─── */
+    --color-primary: #bd8965;
+    --color-primary-dark: #a37253;
+    --color-bg-dark: #1d1815;
+    --color-bg-light: #f7f7f6;
+    --color-olive: #6D674B;
+    --color-taupe: #C0AF9E;
+    --color-soft-clay: #AC6A47;
+    --color-off-white: #C4BBAA;
+    --color-terracotta: #B98869;
+    --color-sand: #AAA082;
+    --color-shady: #767267;
+    --color-warm-white: #C3BDB1;
+
+    /* ─── Semantic ─── */
+    --color-success: #7d9b76;
+    --color-warning: #c9a857;
+    --color-error: #b85c5c;
+
+    /* ─── Type ─── */
+    --font-display: 'Inter', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-display);
+    background: var(--color-bg-dark);
+    color: white;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+/* ─── Hero BG ─── */
+.hero-bg {
+    background: radial-gradient(circle at 65% 50%, #4a4532 0%, #1d1815 65%);
+}
+
+/* ─── Glass Cards ─── */
+.glass-card {
+    background: rgba(29, 24, 21, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-light {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+
+/* ─── Button Glow ─── */
+.btn-glow {
+    box-shadow:
+        0 0 20px rgba(189, 137, 101, 0.4),
+        0 0 40px rgba(189, 137, 101, 0.2),
+        0 8px 24px -6px rgba(172, 106, 71, 0.5);
+    animation: glow-pulse 2.5s ease-in-out infinite;
+}
+
+.btn-glow:hover {
+    box-shadow:
+        0 0 30px rgba(189, 137, 101, 0.55),
+        0 0 60px rgba(189, 137, 101, 0.3),
+        0 12px 32px -6px rgba(172, 106, 71, 0.6);
+}
+
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 20px rgba(189, 137, 101, 0.4),
+            0 0 40px rgba(189, 137, 101, 0.2),
+            0 8px 24px -6px rgba(172, 106, 71, 0.5);
+    }
+
+    50% {
+        box-shadow:
+            0 0 28px rgba(189, 137, 101, 0.55),
+            0 0 56px rgba(189, 137, 101, 0.28),
+            0 10px 28px -6px rgba(172, 106, 71, 0.55);
+    }
+}
+
+/* ─── Grain Texture ─── */
+.grain {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMwMDAiLz4KPC9zdmc+");
+}
+
+/* ─── Animations ─── */
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-up {
+    animation: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-slide-in {
+    animation: slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slide-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(110%);
+        opacity: 0;
+    }
+}
+
+.animate-slide-out {
+    animation: slide-out 0.35s ease-in forwards;
+}
+
+@keyframes pulse-gentle {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animate-pulse-gentle {
+    animation: pulse-gentle 0.5s ease-out;
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.animate-breathe {
+    animation: breathe 2.5s ease-in-out infinite;
+}
+
+/* ─── ROM arc ─── */
+.rom-arc {
+    transition: stroke-dashoffset 0.2s ease-out;
+}
+
+/* ─── Canvas ─── */
+canvas.skeleton-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
