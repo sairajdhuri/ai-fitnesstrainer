@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Sidebar — Japandi light mode.
  * Clean vertical nav on warm linen-like bg.

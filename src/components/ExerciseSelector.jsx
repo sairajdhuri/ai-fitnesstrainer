@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * ExerciseSelector: a grid of exercise cards shown before a session starts.
  */

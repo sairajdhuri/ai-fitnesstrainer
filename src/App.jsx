@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useCallback, useEffect, useState } from 'react';
 import useSessionStore from './store/sessionStore';
 import { initPoseEngine, startDetection, stopDetection } from './engine/poseEngine';
@@ -13,8 +15,6 @@ import FeedbackPopup from './components/FeedbackPopup';
 import VisibilityWarning from './components/VisibilityWarning';
 
 import { ArrowLeft } from 'lucide-react';
-
-import './App.css';
 
 export default function App() {
     const canvasRef = useRef(null);

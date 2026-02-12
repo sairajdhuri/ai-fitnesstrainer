@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * HUD — Dark theme for workout view.
  * Large elegant rep counter bottom-left, glass-card styling.

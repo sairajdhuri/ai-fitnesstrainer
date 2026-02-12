@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * FeedbackPopup — Dark-theme toasts matching the landing design.
  */

@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * Dashboard — Japandi light mode.
  * Hero with warm clay accent, all Japandi colors visible across

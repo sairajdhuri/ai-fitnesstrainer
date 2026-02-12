@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * LandingPage — Faithfully converted from user's provided HTML.
  * Dark Japandi hero with Playfair Display serif, glass nav, social proof,
